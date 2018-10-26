@@ -8,10 +8,11 @@
 
 import Foundation
 
+let minInHour = 60
+let hourInDay = 24
+let minInDay = minInHour * hourInDay
 struct Time: Equatable, Comparable {
-    let minInHour = 60
-    let hourInDay = 24
-    let minInDay = 60 * 24
+    
     let min, hour: Int!
     
     init(hour: Int, min: Int) {

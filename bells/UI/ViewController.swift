@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
     @IBOutlet weak var open: UIBarButtonItem!
     var varView = String()
     
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
         open.target = self.revealViewController()
         open.action = #selector(SWRevealViewController.revealToggle(_:))
         
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         label.text = varView
     }

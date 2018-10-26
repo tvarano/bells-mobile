@@ -21,6 +21,7 @@
 		612446F12182B13100EA3089 /* DayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446F02182B13100EA3089 /* DayType.swift */; };
 		612446F62182BE4D00EA3089 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 612446F52182BE4D00EA3089 /* Colors.plist */; };
 		612446F8218346D500EA3089 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446F7218346D500EA3089 /* Rotation.swift */; };
+		612446FA2183C47600EA3089 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446F92183C47600EA3089 /* Reader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		612446F02182B13100EA3089 /* DayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayType.swift; sourceTree = "<group>"; };
 		612446F52182BE4D00EA3089 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Colors.plist; path = "../../../../../.Trash/bells-mobile/bells-mobile/bells-mobile/Info/Colors.plist"; sourceTree = "<group>"; };
 		612446F7218346D500EA3089 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		612446F92183C47600EA3089 /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				612446E72181E8CB00EA3089 /* TimeManager.swift */,
 				612446EB2181ED9D00EA3089 /* Extensions.swift */,
 				612446E92181E8E300EA3089 /* Period.swift */,
+				612446F92183C47600EA3089 /* Reader.swift */,
 				612446ED2181EDCE00EA3089 /* Time.swift */,
 				612446EF2182B12000EA3089 /* TemplateData */,
 			);
@@ -205,6 +208,7 @@
 				612446EC2181ED9D00EA3089 /* Extensions.swift in Sources */,
 				610B8408218019AB0054071F /* ViewController.swift in Sources */,
 				612446F12182B13100EA3089 /* DayType.swift in Sources */,
+				612446FA2183C47600EA3089 /* Reader.swift in Sources */,
 				612446F8218346D500EA3089 /* Rotation.swift in Sources */,
 				610B8406218019AB0054071F /* AppDelegate.swift in Sources */,
 				612446EE2181EDCE00EA3089 /* Time.swift in Sources */,
@@ -359,6 +363,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ED3NGBD4B;
 				INFOPLIST_FILE = bells/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,6 +385,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ED3NGBD4B;
 				INFOPLIST_FILE = bells/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

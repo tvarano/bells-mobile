@@ -26,6 +26,11 @@ struct DayType {
     func getDayLength() -> Time {
         return startTimes[0].timeUntil(other: endTimes[endTimes.endIndex - 1])
     }
+    
+    func count() -> Int {
+        return startTimes.count
+        LUNCH
+    }
 }
 
 class DayTypeManager {
@@ -41,7 +46,6 @@ class DayTypeManager {
     }
     
     private func offlineInit() {
-        
         // Initialize all start times manually, in case of a lack of internet connection
         let allStarts: [[Time]] = [
             // Normal
@@ -67,7 +71,9 @@ class DayTypeManager {
         ]
         
         let allEnds: [[Time]] = [
+            // Normal
             [Time(8,48), Time(9,42), Time(10,34), Time(11,26), Time(12,17), Time(13,9), Time(14,1), Time(14,53)]
+            
         ]
         
         let labs: [Time] = [Time(11,53), Time(11,21)]
