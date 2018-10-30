@@ -8,10 +8,15 @@
 
 import Foundation
 
-extension Collection {
-    
+extension Collection {    
     /// Returns the element at the specified index ifÍ it is within bounds, otherwise nil.
     subscript (safe index: Index) -> Element? {
         return indices.contains(index) ? self[index] : nil
+    }
+}
+
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
 }

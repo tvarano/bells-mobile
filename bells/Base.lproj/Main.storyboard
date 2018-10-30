@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,13 +21,13 @@
                         <viewLayoutGuide key="safeArea" id="kS6-iP-yvX"/>
                     </view>
                     <connections>
-                        <segue destination="e5x-oa-3Fr" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="ISf-a6-RRy"/>
+                        <segue destination="e5x-oa-3Fr" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSeguePushController" id="ISf-a6-RRy"/>
                         <segue destination="WYl-5Y-EWH" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="iGL-ty-pf1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3T6-M4-Trb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-607" y="52"/>
+            <point key="canvasLocation" x="-690" y="92"/>
         </scene>
         <!--Back TableVC-->
         <scene sceneID="4wr-Pq-GWy">
@@ -46,7 +47,7 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="cell"/>
                                 <connections>
-                                    <segue destination="WYl-5Y-EWH" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="sae-w5-Qap"/>
+                                    <segue destination="WYl-5Y-EWH" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="9oh-gV-FA1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -99,7 +100,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-1g-F5u">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-1g-F5u">
                                         <rect key="frame" x="8" y="30" width="317" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
@@ -175,45 +176,23 @@
                         <barButtonItem key="leftBarButtonItem" title="Set Rotation" id="dBN-d2-z1t"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="vWS-rt-Qak">
                             <connections>
-                                <segue destination="KMG-uw-FPp" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="1hA-xb-9iF"/>
+                                <segue destination="qbe-by-6YG" kind="show" id="47a-TD-Dg7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="label" destination="UOZ-SA-ERI" id="X9Z-V4-jNY"/>
+                        <outlet property="currentClassLabel" destination="kBb-1g-F5u" id="oX9-ch-ITa"/>
+                        <outlet property="lowerContentLabel" destination="LII-G6-APf" id="Xar-NG-bQ5"/>
                         <outlet property="open" destination="dBN-d2-z1t" id="USH-vW-9qG"/>
+                        <outlet property="rotationLabel" destination="UOZ-SA-ERI" id="1IT-VI-U9O"/>
+                        <outlet property="statusLabel" destination="s2m-3s-HUd" id="Tl0-E4-Fyh"/>
+                        <outlet property="timeLeftLabel" destination="DLR-uh-FSl" id="vSP-oi-RpO"/>
+                        <segue destination="qbe-by-6YG" kind="show" id="Vf1-Wu-2sf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToE-eQ-EdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1309.5999999999999" y="528.32512315270935"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="k9h-PQ-f4B">
-            <objects>
-                <navigationController id="KMG-uw-FPp" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DZP-M5-vVd">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <color key="barTintColor" red="1" green="0.41568627450000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <color key="textShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="qbe-by-6YG" kind="relationship" relationship="rootViewController" id="kuO-SQ-uaW"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F3Q-Jg-sTS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="377" y="1233"/>
+            <point key="canvasLocation" x="1310" y="530"/>
         </scene>
         <!--Settings-->
         <scene sceneID="GlP-gv-bSZ">
@@ -222,25 +201,87 @@
                     <view key="view" contentMode="scaleToFill" id="f6V-1b-CVP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0wj-HL-cY8">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="SjF-Hl-6qM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="swo-zy-oC4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PH Bells" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efj-Dc-lW4">
+                                        <rect key="frame" x="0.0" y="105" width="375" height="32"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Thomas Varano" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYV-ed-usG">
+                                        <rect key="frame" x="0.0" y="137" width="375" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 0.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E2-Jp-mXn">
+                                        <rect key="frame" x="0.0" y="158" width="375" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTt-w0-uDF">
+                                        <rect key="frame" x="159" y="272" width="42" height="21"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="uTt-w0-uDF" firstAttribute="leading" secondItem="0wj-HL-cY8" secondAttribute="leading" constant="159" id="5yX-hD-FvG"/>
+                                    <constraint firstItem="5E2-Jp-mXn" firstAttribute="top" secondItem="TYV-ed-usG" secondAttribute="bottom" id="62T-WA-Q2n"/>
+                                    <constraint firstItem="Efj-Dc-lW4" firstAttribute="top" secondItem="SjF-Hl-6qM" secondAttribute="bottom" constant="5" id="6Iy-PJ-MYX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Efj-Dc-lW4" secondAttribute="trailing" id="6Ra-oK-0Ca"/>
+                                    <constraint firstItem="SjF-Hl-6qM" firstAttribute="top" secondItem="0wj-HL-cY8" secondAttribute="top" id="A57-D4-QQD"/>
+                                    <constraint firstItem="uTt-w0-uDF" firstAttribute="top" secondItem="5E2-Jp-mXn" secondAttribute="bottom" constant="93" id="B4e-dd-7bR"/>
+                                    <constraint firstItem="SjF-Hl-6qM" firstAttribute="leading" secondItem="0wj-HL-cY8" secondAttribute="leading" id="JzP-LT-xVc"/>
+                                    <constraint firstItem="TYV-ed-usG" firstAttribute="top" secondItem="Efj-Dc-lW4" secondAttribute="bottom" id="Pea-l1-nrV"/>
+                                    <constraint firstItem="SjF-Hl-6qM" firstAttribute="centerX" secondItem="0wj-HL-cY8" secondAttribute="centerX" id="TVl-Xw-wUa"/>
+                                    <constraint firstItem="TYV-ed-usG" firstAttribute="leading" secondItem="0wj-HL-cY8" secondAttribute="leading" id="ZgI-Gg-SWA"/>
+                                    <constraint firstAttribute="trailing" secondItem="SjF-Hl-6qM" secondAttribute="trailing" id="ffk-9O-v0p"/>
+                                    <constraint firstItem="Efj-Dc-lW4" firstAttribute="leading" secondItem="0wj-HL-cY8" secondAttribute="leading" id="h0o-o2-LBN"/>
+                                    <constraint firstAttribute="trailing" secondItem="5E2-Jp-mXn" secondAttribute="trailing" id="jEJ-42-xUl"/>
+                                    <constraint firstAttribute="trailing" secondItem="TYV-ed-usG" secondAttribute="trailing" id="mNB-Ka-FAZ"/>
+                                    <constraint firstItem="5E2-Jp-mXn" firstAttribute="leading" secondItem="0wj-HL-cY8" secondAttribute="leading" id="o1e-iz-Fx1"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0wj-HL-cY8" firstAttribute="leading" secondItem="bjt-rd-oBK" secondAttribute="leading" id="XQk-pa-ZtE"/>
+                            <constraint firstItem="0wj-HL-cY8" firstAttribute="trailing" secondItem="bjt-rd-oBK" secondAttribute="trailing" id="a5b-jv-CpN"/>
+                            <constraint firstItem="0wj-HL-cY8" firstAttribute="bottom" secondItem="bjt-rd-oBK" secondAttribute="bottom" id="c0E-is-J6H"/>
+                            <constraint firstItem="0wj-HL-cY8" firstAttribute="top" secondItem="bjt-rd-oBK" secondAttribute="top" id="jPe-if-qEj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bjt-rd-oBK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="cT3-iA-SFu">
                         <barButtonItem key="backBarButtonItem" title="Back" id="jq4-xf-3nY"/>
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="9Mi-cl-DJm">
-                            <connections>
-                                <segue destination="WYl-5Y-EWH" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="sKr-7C-dCd"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FB8-KI-EYy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310" y="1233"/>
+            <point key="canvasLocation" x="2125.5999999999999" y="529.80295566502468"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="762" height="826"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sKr-7C-dCd"/>
+        <segue reference="47a-TD-Dg7"/>
+        <segue reference="9oh-gV-FA1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>

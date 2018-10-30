@@ -37,11 +37,79 @@ struct Rotation {
 }
 
 class RotationManager {
-    var rotations: [Rotation]
-    let names = ["R1", "R2", "R3", "R4", "Odd Block", "Even Block", "R1 Half Day", "R3 Half Day", "R4 Half Day", "R1 Delayed Opening", "R3 Delayed Opening", "R4 Delayed Opening", "Odd Block Delayed Opening", "Even Block Delayed Opening", "No School", "INCORRECT_PARSE", "Day One", "Day Two", "Day Three", "10:00 Opening", "Special", "Flipped Even Block"]
+    var vals: [Rotation]
+    var types: DayTypeManager
     
-    init() {
-        rotations = []
+    static let names = ["R1", "R2", "R3", "R4", "Odd Block", "Even Block", "R1 Half Day", "R3 Half Day", "R4 Half Day", "R1 Delayed Opening", "R3 Delayed Opening", "R4 Delayed Opening", "Odd Block Delayed Opening", "Even Block Delayed Opening", "No School", "INCORRECT_PARSE", "Testing Day One", "Testing Day Two", "Testing Day Three", "10:00 Opening", "Special", "Pep Rally"]
+    
+    static let showOrder = [R1, oddBlock, evenBlock, R4, R3, BREAK,
+                            halfR1, halfR3, halfR4, BREAK,
+                            delayR1, delayOdd, delayEven, delayR4, delayR3, delayArr, BREAK,
+                            testOne, testTwo, testThree, BREAK,
+                            flipEvenBlock, special
+                            ]
+    
+    func getShowableRotations() -> [Rotation] {
+        let blank = Rotation(ordinal: BREAK, name: "blank", dayType: types.get(name: "no_school")!, slotRotation: [0])
+        var ret: [Rotation] = []
+        for i in 0..<RotationManager.showOrder.count {
+            ret.append(RotationManager.showOrder[i] == BREAK ? blank :  vals[RotationManager.showOrder[i]])
+        }
+        return ret
+    }
+    
+    static func getShowableRotationNames() -> [String] {
+        var ret: [String] = []
+        for i in showOrder {
+            ret.append(i == BREAK ? "" : names[i])
+        }
+        return ret
+    }
+    
+    init(with types: DayTypeManager) {
+        print("constructing rotation manager")
+        vals = []
+        self.types = types
+        //online init
+        //catch
+        //offline init
+        offlineInit()
+    }
+    
+    convenience init() {
+        self.init(with: DayTypeManager())
+    }
+    
+    private func offlineInit() {
+        for ord in 0..<RotationManager.names.count {
+            vals.append(Rotation(ordinal: ord, name: RotationManager.names[ord], dayType: getType(for: ord), slotRotation: RotationManager.getSlotRotation(for: ord)))
+        }
+    }
+    
+    func getType(for ordinal: Int) -> DayType {
+        switch ordinal {
+        case R1, R2, R3, R4:
+            return types.vals[DayTypeManager.normal]
+        case evenBlock, oddBlock, flipEvenBlock:
+            return types.vals[DayTypeManager.block]
+        case halfR1, halfR3, halfR4:
+            return types.vals[DayTypeManager.halfDay]
+        case delayR1, delayR3, delayR4:
+            return types.vals[DayTypeManager.delayOpen]
+        case delayOdd:
+            return types.vals[DayTypeManager.delayOdd]
+        case delayEven:
+            return types.vals[DayTypeManager.delayEven]
+        case noSchoolOrdinal, incorrectParse:
+            return types.vals[DayTypeManager.noSchool]
+        case testOne, testTwo, testThree:
+            return types.vals[DayTypeManager.testDay]
+        case delayArr:
+            return types.vals[DayTypeManager.delayArr]
+        default:
+            return types.vals[DayTypeManager.noSchool]
+        }
+        
     }
     
     static func getSlotRotation(for ordinal: Int) -> [Int] {
@@ -78,8 +146,18 @@ class RotationManager {
             return [specialOfflineIndex]
         case flipEvenBlock:
             return [2, 4, lunch, 6, pascackStudy]
+        case noSchoolOrdinal, incorrectParse:
+            return [noSchoolSlot]
         default: return []
         }
+    }
+    func get(name: String) -> Rotation? {
+        for r in vals {
+            if r.name == name {
+                return r
+            }
+        }
+        return nil
     }
 }
 
@@ -89,3 +167,4 @@ let R1 = 0, R2 = 1, R3 = 2, R4 = 3, oddBlock = 4, evenBlock = 5
 let halfR1 = 6, halfR3 = 7, halfR4 = 8
 let delayR1 = 9, delayR3 = 10, delayR4 = 11, delayOdd = 12, delayEven = 13
 let noSchoolOrdinal = 14, incorrectParse = 15, testOne = 16, testTwo = 17, testThree = 18, delayArr = 19, special = 20, flipEvenBlock = 21
+let BREAK = -1

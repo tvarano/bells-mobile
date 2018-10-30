@@ -29,17 +29,18 @@ struct DayType {
     
     func count() -> Int {
         return startTimes.count
-        LUNCH
     }
 }
 
 class DayTypeManager {
-    var types: [DayType]
+    var vals: [DayType]
     let names: [String] = ["normal", "block", "half_day", "delayed_open", "delay_odd", "delay_even", "no_school", "test_day", "delay_arr", "special"]
+    
+    static let normal = 0, block = 1, halfDay = 2, delayOpen = 3, delayOdd = 4, delayEven = 5, noSchool = 6, testDay = 7, delayArr = 8, special = 9
     
     // create all types
     init() {
-        types = []
+        vals = []
         //online init
         //catch for offline
         offlineInit()
@@ -72,14 +73,43 @@ class DayTypeManager {
         
         let allEnds: [[Time]] = [
             // Normal
-            [Time(8,48), Time(9,42), Time(10,34), Time(11,26), Time(12,17), Time(13,9), Time(14,1), Time(14,53)]
-            
+            [Time(8,48), Time(9,42), Time(10,34), Time(11,26), Time(12,17), Time(13,9), Time(14,1), Time(14,53)],
+            // Block
+            [Time(9,27), Time(11,00), Time(11,51), Time(13,22), Time(14,53)],
+            // Half Day
+            [Time(8,31), Time(9,8), Time(9,43), Time(10,18), Time(10,52), Time(11,26), Time(12,00)],
+            // Delayed Opening Normal
+            [Time(10, 5), Time(10, 46), Time(11, 25), Time(12, 4), Time(12, 55), Time(13, 34), Time(14, 13), Time(14, 53)],
+            // Delay Odd
+            [Time(10,35), Time(11,44), Time(12,35), Time(13,44), Time(14,53)],
+            // Delay Even
+            [Time(10,58), Time(12,30), Time(13,21), Time(14,53)],
+            // No School
+            [Time(23,59)],
+            // Test Day
+            [Time(9,25), Time(10,57), Time(11,53), Time(13,22), Time(14,53)],
+            // Delay Arr
+            [Time(11,18), Time(12,9), Time(13,31), Time(14,53)],
+            // Special
+            [Time(0, 1)]
         ]
         
         let labs: [Time] = [Time(11,53), Time(11,21)]
         
         for ord in 0..<names.count {
-            types.append(DayType(ordinal: ord, name: names[ord], starts: allStarts[ord], ends: allEnds[ord], labSwitch: labs[ord]))
+            if ord < labs.count {
+                vals.append(DayType(ordinal: ord, name: names[ord], starts: allStarts[ord], ends: allEnds[ord], labSwitch: labs[ord]))
+            } else {
+                vals.append(DayType(ordinal: ord, name: names[ord], starts: allStarts[ord], ends: allEnds[ord], labSwitch: nil))
+            }
         }
+    }
+    func get(name: String) -> DayType? {
+        for t in vals {
+            if t.name == name {
+                return t
+            }
+        }
+        return nil
     }
 }

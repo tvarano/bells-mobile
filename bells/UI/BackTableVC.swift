@@ -12,10 +12,10 @@ import UIKit
 class BackTableVC: UITableViewController {
     
     var tableArray = [String]()
+    var rotations: RotationManager!
     
     override func viewDidLoad() {
-        tableArray = ["R1", "Odd Block", "Even Block", "R4", "R3",
-                      /*BREAK*/ "", "R1 Half Day", "R3 Half Day", "R4 Half Day", "R1 Delayed Open"]
+        tableArray = RotationManager.getShowableRotationNames()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,8 +33,9 @@ class BackTableVC: UITableViewController {
         let destNav = segue.destination as! UINavigationController
         let destVC = destNav.viewControllers[0] as! ViewController
         let indexPath: NSIndexPath = self.tableView!.indexPathForSelectedRow! as NSIndexPath
-        destVC.varView = tableArray[indexPath.row]
-
+        
+        destVC.rotations = self.rotations
+        destVC.changedRotation = tableArray[indexPath.row]
     }
     
     
