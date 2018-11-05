@@ -98,4 +98,27 @@ struct Time: Equatable, Comparable {
         let timeToMidnight: Int = timeUntil(other: .midnight() - 1).getTotalMins() + 1
         return Time(totalMins: timeToMidnight + other.getTotalMins())
     }
+    
+    func string() -> String {
+        return "\(hour ?? -1):\(min ?? -1)"
+    }
+    
+    private func minString() -> String {
+        return min == 0 ? "00" : "\(min ?? -1)"
+    }
+    
+    func string12hr() -> String {
+        let am = hour < 12 ? "am" : "pm"
+        let hourStr = hour <= 12 ? "\(hour ?? -1)" : "\(hour%12)"
+        return "\(hourStr):\(minString()) \(am)"
+        
+    }
+    
+    func remainString() -> String {
+        if hour != 0 {
+            return "\(hour ?? -1) hour, \(minString()) minutes"
+        } else {
+            return "\(min ?? -1) minutes"
+        }
+    }
 }

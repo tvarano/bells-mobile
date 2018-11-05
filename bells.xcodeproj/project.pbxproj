@@ -12,7 +12,6 @@
 		610B840B218019AB0054071F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610B8409218019AB0054071F /* Main.storyboard */; };
 		610B840D218019AD0054071F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 610B840C218019AD0054071F /* Assets.xcassets */; };
 		610B8410218019AD0054071F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610B840E218019AD0054071F /* LaunchScreen.storyboard */; };
-		610B841C21801BB30054071F /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610B841B21801BB30054071F /* SWRevealViewController.m */; };
 		612446E62180DA1200EA3089 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446E52180DA1200EA3089 /* BackTableVC.swift */; };
 		612446E82181E8CB00EA3089 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446E72181E8CB00EA3089 /* TimeManager.swift */; };
 		612446EA2181E8E300EA3089 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446E92181E8E300EA3089 /* Period.swift */; };
@@ -22,6 +21,9 @@
 		612446F62182BE4D00EA3089 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 612446F52182BE4D00EA3089 /* Colors.plist */; };
 		612446F8218346D500EA3089 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446F7218346D500EA3089 /* Rotation.swift */; };
 		612446FA2183C47600EA3089 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612446F92183C47600EA3089 /* Reader.swift */; };
+		61B2BB76218A13E60082F5DF /* ClassTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B2BB75218A13E60082F5DF /* ClassTableViewDelegate.swift */; };
+		61B2BB7B218A143D0082F5DF /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B2BB79218A143D0082F5DF /* ClassTableViewCell.swift */; };
+		61B2BB7C218A143D0082F5DF /* ClassTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61B2BB7A218A143D0082F5DF /* ClassTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +35,6 @@
 		610B840F218019AD0054071F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		610B8411218019AD0054071F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		610B841921801BB20054071F /* bells-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bells-Bridging-Header.h"; sourceTree = "<group>"; };
-		610B841A21801BB30054071F /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		610B841B21801BB30054071F /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		612446E52180DA1200EA3089 /* BackTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackTableVC.swift; sourceTree = "<group>"; };
 		612446E72181E8CB00EA3089 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		612446E92181E8E300EA3089 /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
@@ -44,6 +44,9 @@
 		612446F52182BE4D00EA3089 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Colors.plist; path = "../../../../../.Trash/bells-mobile/bells-mobile/bells-mobile/Info/Colors.plist"; sourceTree = "<group>"; };
 		612446F7218346D500EA3089 /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
 		612446F92183C47600EA3089 /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		61B2BB75218A13E60082F5DF /* ClassTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewDelegate.swift; sourceTree = "<group>"; };
+		61B2BB79218A143D0082F5DF /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
+		61B2BB7A218A143D0082F5DF /* ClassTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +93,6 @@
 		610B8417218019B90054071F /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				610B841A21801BB30054071F /* SWRevealViewController.h */,
-				610B841B21801BB30054071F /* SWRevealViewController.m */,
 				610B841921801BB20054071F /* bells-Bridging-Header.h */,
 			);
 			path = SupportingFiles;
@@ -126,6 +127,9 @@
 				610B8405218019AB0054071F /* AppDelegate.swift */,
 				612446E52180DA1200EA3089 /* BackTableVC.swift */,
 				610B8407218019AB0054071F /* ViewController.swift */,
+				61B2BB75218A13E60082F5DF /* ClassTableViewDelegate.swift */,
+				61B2BB79218A143D0082F5DF /* ClassTableViewCell.swift */,
+				61B2BB7A218A143D0082F5DF /* ClassTableViewCell.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -189,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B2BB7C218A143D0082F5DF /* ClassTableViewCell.xib in Resources */,
 				612446F62182BE4D00EA3089 /* Colors.plist in Resources */,
 				610B8410218019AD0054071F /* LaunchScreen.storyboard in Resources */,
 				610B840D218019AD0054071F /* Assets.xcassets in Resources */,
@@ -203,16 +208,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B2BB7B218A143D0082F5DF /* ClassTableViewCell.swift in Sources */,
 				612446E62180DA1200EA3089 /* BackTableVC.swift in Sources */,
 				612446E82181E8CB00EA3089 /* TimeManager.swift in Sources */,
 				612446EC2181ED9D00EA3089 /* Extensions.swift in Sources */,
 				610B8408218019AB0054071F /* ViewController.swift in Sources */,
 				612446F12182B13100EA3089 /* DayType.swift in Sources */,
+				61B2BB76218A13E60082F5DF /* ClassTableViewDelegate.swift in Sources */,
 				612446FA2183C47600EA3089 /* Reader.swift in Sources */,
 				612446F8218346D500EA3089 /* Rotation.swift in Sources */,
 				610B8406218019AB0054071F /* AppDelegate.swift in Sources */,
 				612446EE2181EDCE00EA3089 /* Time.swift in Sources */,
-				610B841C21801BB30054071F /* SWRevealViewController.m in Sources */,
 				612446EA2181E8E300EA3089 /* Period.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

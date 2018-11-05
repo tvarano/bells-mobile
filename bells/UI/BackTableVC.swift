@@ -11,32 +11,43 @@ import UIKit
 
 class BackTableVC: UITableViewController {
     
-    var tableArray = [String]()
     var rotations: RotationManager!
+    var tableManager: RotationTableManager!
     
     override func viewDidLoad() {
-        tableArray = RotationManager.getShowableRotationNames()
+        tableManager = RotationTableManager(manager: rotations)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = tableArray[indexPath.row]
+        cell.textLabel?.text = tableManager.groups[indexPath.section].vals[indexPath.row].name
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableArray.count
+        return tableManager.groups[section].vals.count
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return tableManager.groups.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return tableManager.groups[section].name
     }
     
     // change information to the main VC after segue back.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print ("PREPARE FOR SEGUE BACK")
         let destNav = segue.destination as! UINavigationController
         let destVC = destNav.viewControllers[0] as! ViewController
         let indexPath: NSIndexPath = self.tableView!.indexPathForSelectedRow! as NSIndexPath
         
         destVC.rotations = self.rotations
-        destVC.changedRotation = tableArray[indexPath.row]
+        destVC.changedRotation = tableManager.groups[indexPath.section].vals[indexPath.row].name
     }
+    
     
     
 }

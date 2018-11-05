@@ -9,8 +9,8 @@
 import Foundation
 
 class Period {
-    var startTime, endTime: Time!
-    var name: String!
+    let startTime, endTime: Time!
+    let name: String!
     
     init(named name: String, from start: Time, to end: Time) {
         self.name = name; self.startTime = start; self.endTime = end
@@ -44,5 +44,17 @@ class Period {
     
     static func showPeriod(slot: Int) -> Bool {
         return slot >= 0 && slot <= 8
+    }
+    
+    func timeLeft() -> Time {
+        return Time.now().timeUntil(other: endTime)
+    }
+    
+    func remaining() -> String {
+        return timeLeft().remainString()
+    }
+    
+    func lengthString() -> String {
+        return "\(startTime.string12hr()) - \(endTime.string12hr())"
     }
 }

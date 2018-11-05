@@ -42,29 +42,6 @@ class RotationManager {
     
     static let names = ["R1", "R2", "R3", "R4", "Odd Block", "Even Block", "R1 Half Day", "R3 Half Day", "R4 Half Day", "R1 Delayed Opening", "R3 Delayed Opening", "R4 Delayed Opening", "Odd Block Delayed Opening", "Even Block Delayed Opening", "No School", "INCORRECT_PARSE", "Testing Day One", "Testing Day Two", "Testing Day Three", "10:00 Opening", "Special", "Pep Rally"]
     
-    static let showOrder = [R1, oddBlock, evenBlock, R4, R3, BREAK,
-                            halfR1, halfR3, halfR4, BREAK,
-                            delayR1, delayOdd, delayEven, delayR4, delayR3, delayArr, BREAK,
-                            testOne, testTwo, testThree, BREAK,
-                            flipEvenBlock, special
-                            ]
-    
-    func getShowableRotations() -> [Rotation] {
-        let blank = Rotation(ordinal: BREAK, name: "blank", dayType: types.get(name: "no_school")!, slotRotation: [0])
-        var ret: [Rotation] = []
-        for i in 0..<RotationManager.showOrder.count {
-            ret.append(RotationManager.showOrder[i] == BREAK ? blank :  vals[RotationManager.showOrder[i]])
-        }
-        return ret
-    }
-    
-    static func getShowableRotationNames() -> [String] {
-        var ret: [String] = []
-        for i in showOrder {
-            ret.append(i == BREAK ? "" : names[i])
-        }
-        return ret
-    }
     
     init(with types: DayTypeManager) {
         print("constructing rotation manager")
@@ -159,6 +136,39 @@ class RotationManager {
         }
         return nil
     }
+}
+
+
+class RotationTableManager {
+    static let sectionNames: [String] = ["Normal", "Half Day", "Delayed Opening", "Midterm / Finals", "Other"]
+    
+    static let showOrder: [[Int]] = [[R1, oddBlock, evenBlock, R4, R3],
+                            [halfR1, halfR3, halfR4],
+                            [delayR1, delayOdd, delayEven, delayR4, delayR3, delayArr],
+                            [testOne, testTwo, testThree],
+                            [flipEvenBlock, special]
+    ]
+    
+    var groups = [RotationGroup]()
+    
+    init(manager: RotationManager) {
+        var nameIndex: Int = 0
+        for sec in RotationTableManager.showOrder {
+            var sectionVals = [Rotation]()
+            for ind in sec {
+                sectionVals.append(manager.vals[ind])
+            }
+            groups.append(RotationGroup(name: RotationTableManager.sectionNames[nameIndex], vals: sectionVals))
+            nameIndex += 1
+        }
+    }
+    
+    
+}
+
+struct RotationGroup {
+    var name: String
+    var vals: [Rotation]
 }
 
 let lunch = 9, pascack = 10, noSchoolSlot = 11, pascackStudy = 12, specialOfflineIndex = 13, parcc = 14, noSlot = -1

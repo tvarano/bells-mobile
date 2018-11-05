@@ -17,6 +17,8 @@
 
 import UIKit
 
+var firstLoad = true
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var rotationLabel: UILabel!
@@ -24,10 +26,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var currentClassLabel: UILabel!
     @IBOutlet weak var lowerContentLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
+    @IBOutlet weak var tableBackground: UIView!
+    
+    @IBOutlet weak var classTable: UITableView!
     
     // have the ability to reread in settings
     var rotations: RotationManager!
     var timeManager: TimeManager!
+    var delegate: ClassTableViewDelegate!
+    
 
     @IBOutlet weak var open: UIBarButtonItem!
     var changedRotation = String()
@@ -36,6 +43,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if firstLoad {
+            print("initial setting")
             initialSetting()
             firstLoad = false
         }
@@ -47,12 +55,15 @@ class ViewController: UIViewController {
         if (timeManager == nil) {
             timeManager = TimeManager(rotations: rotations, view: self)
         }
-        
-        open.target = self.revealViewController()
-        open.action = #selector(SWRevealViewController.revealToggle(_:))
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
+        updateRotation()
         updateUI()
+    }
+    
+    private func createTable() {
+        delegate = ClassTableViewDelegate(with: timeManager.currentRotation)
+        classTable.register(ClassTableViewCell.self, forCellReuseIdentifier: "ident")
+        classTable.dataSource = delegate
+        classTable.delegate = delegate
     }
     
     func initialSetting() {
@@ -63,34 +74,45 @@ class ViewController: UIViewController {
         changedRotation = timeManager.currentRotation.name
     }
     
-    func updateUI() {
+    func updateRotation() {
         if changedRotation == "" {
             changedRotation = timeManager.currentRotation.name
-            
         }
         if changedRotation != timeManager.currentRotation.name {
             timeManager.currentRotation = rotations.get(name: changedRotation)!
+            updateTodayClasses()
         }
+        createTable()
+    }
+    
+    func updateUI() {
+        updateRotation()
         setRotationLabel(to: timeManager.currentRotation.name
         )
-        if timeManager.getCurrentClass() != nil {
-            currentClassLabel.text = timeManager.getCurrentClass()?.name
+        // set current class
+        if let current = timeManager.getCurrentClass() {
+            // if in class
+            currentClassLabel.text = current.name
+            timeLeftLabel.text = current.remaining()
+        } else {
+            // not directly in class
+            currentClassLabel.text = Time.now().string()
         }
+    }
+    
+    func updateTodayClasses() {
+        
     }
     
     func setRotationLabel(to name: String) {
-        rotationLabel.text = "Today's Rotation: "+name
+        rotationLabel.text = name
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare??")
         if let destNav = segue.destination as? BackTableVC {
             print("PASSING ROTATIONS")
             destNav.rotations = self.rotations
         }
         
-        
     }
 }
-
-var firstLoad = true

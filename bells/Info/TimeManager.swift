@@ -24,7 +24,8 @@ class TimeManager {
         //use more later, but for now just do by day
         switch Date().dayNumberOfWeek() {
         case 1, 7:
-            return rotations.vals[noSchoolOrdinal]
+//            return rotations.vals[noSchoolOrdinal]
+            return rotations.vals[R1]
         case 2:
             return rotations.vals[R1]
         case 3:

@@ -13,12 +13,7 @@ struct DayType {
     let name: String!
     let startTimes, endTimes: [Time]!
     let labSwitch: Time?
-    
-    init(ordinal: Int, name: String, starts: [Time], ends: [Time], labSwitch: Time?) {
-        self.ordinal = ordinal; self.name = name
-        self.startTimes = starts; self.endTimes = ends; self.labSwitch = labSwitch
-    }
-    
+        
     func labCapable() -> Bool {
         return !(labSwitch != nil)
     }
@@ -98,9 +93,9 @@ class DayTypeManager {
         
         for ord in 0..<names.count {
             if ord < labs.count {
-                vals.append(DayType(ordinal: ord, name: names[ord], starts: allStarts[ord], ends: allEnds[ord], labSwitch: labs[ord]))
+                vals.append(DayType(ordinal: ord, name: names[ord], startTimes: allStarts[ord], endTimes: allEnds[ord], labSwitch: labs[ord]))
             } else {
-                vals.append(DayType(ordinal: ord, name: names[ord], starts: allStarts[ord], ends: allEnds[ord], labSwitch: nil))
+                vals.append(DayType(ordinal: ord, name: names[ord], startTimes: allStarts[ord], endTimes: allEnds[ord], labSwitch: nil))
             }
         }
     }
