@@ -24,8 +24,8 @@ class TimeManager {
         //use more later, but for now just do by day
         switch Date().dayNumberOfWeek() {
         case 1, 7:
-//            return rotations.vals[noSchoolOrdinal]
-            return rotations.vals[R1]
+            return rotations.vals[noSchoolOrdinal]
+//            return rotations.vals[R1]
         case 2:
             return rotations.vals[R1]
         case 3:
@@ -41,12 +41,21 @@ class TimeManager {
         }
     }
     
-    func getCurrentClass() -> Period? {
+    private func classAt(_ time: Time) -> Period? {
         for per in currentRotation.times {
-            if per.contains(time: Time.now()) {
+            if per.contains(time: time) {
                 return per
             }
         }
         return nil
+    }
+    
+    
+    func getCurrentClass() -> Period? {
+        return classAt(Time.now())
+    }
+    
+    func findNextClass() -> Period? {
+        return classAt(Time.now() + 10)
     }
 }

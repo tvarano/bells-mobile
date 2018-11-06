@@ -30,6 +30,8 @@ class ClassTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ident", for: indexPath) as! ClassTableViewCell
         
         // cell not initializing properly
@@ -42,10 +44,15 @@ class ClassTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSour
     
     private func initializeCell(cell: ClassTableViewCell) {
         let insets = cell.safeAreaInsets
+        
+        if cell.classPeriod == nil {
         cell.classPeriod = UILabel(frame: CGRect(x: insets.left, y: insets.top, width: (cell.frame.width - (insets.left + insets.right))/2, height: cell.frame.height - (insets.top + insets.bottom)))
-        cell.time = UILabel(frame: CGRect(x: insets.left + cell.frame.width / 2, y: insets.top, width: (cell.frame.width - (insets.left + insets.right))/2, height: cell.frame.height - (insets.top + insets.bottom)))
-        cell.addSubview(cell.classPeriod)
-        cell.addSubview(cell.time)
+            cell.addSubview(cell.classPeriod)
+        }
+        if cell.time == nil {
+            cell.time = UILabel(frame: CGRect(x: insets.left + cell.frame.width / 2, y: insets.top, width: (cell.frame.width - (insets.left + insets.right))/2, height: cell.frame.height - (insets.top + insets.bottom)))
+            cell.addSubview(cell.time)
+        }
     }
     
     var data = [CellData]()

@@ -18,10 +18,6 @@ struct DayType {
         return !(labSwitch != nil)
     }
     
-    func getDayLength() -> Time {
-        return startTimes[0].timeUntil(other: endTimes[endTimes.endIndex - 1])
-    }
-    
     func count() -> Int {
         return startTimes.count
     }

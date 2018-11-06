@@ -13,6 +13,7 @@ class BackTableVC: UITableViewController {
     
     var rotations: RotationManager!
     var tableManager: RotationTableManager!
+    var selectedRotation: Rotation?
     
     override func viewDidLoad() {
         tableManager = RotationTableManager(manager: rotations)
@@ -37,17 +38,15 @@ class BackTableVC: UITableViewController {
         return tableManager.groups[section].name
     }
     
-    // change information to the main VC after segue back.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print ("PREPARE FOR SEGUE BACK")
-        let destNav = segue.destination as! UINavigationController
-        let destVC = destNav.viewControllers[0] as! ViewController
-        let indexPath: NSIndexPath = self.tableView!.indexPathForSelectedRow! as NSIndexPath
+        print("PREPARING FOR SEGUE")
         
-        destVC.rotations = self.rotations
-        destVC.changedRotation = tableManager.groups[indexPath.section].vals[indexPath.row].name
+        if let selectedCell = sender as? UITableViewCell {
+            let indexPath = tableView.indexPath(for: selectedCell)!
+            let selectedItem = tableManager.groups[indexPath.section].vals[indexPath.row]
+            selectedRotation = selectedItem
+        }
     }
-    
     
     
 }

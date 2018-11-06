@@ -32,7 +32,7 @@ class Period {
         case noSchoolSlot:
             return "No School"
         case pascackStudy:
-            return "Pascack Study Period"
+            return "Pascack Period"
         case specialOfflineIndex:
             return "Error. Offline"
         case parcc:

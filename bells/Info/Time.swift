@@ -39,12 +39,12 @@ struct Time: Equatable, Comparable {
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
         return Time(hour: hour, min: minutes)
+//        return Time(8,49)
     }
     
     static func midnight() -> Time {
         return Time(totalMins: 0)
     }
-    
     
     func getTotalMins() -> Int {
         return hour * minInHour + min
@@ -95,7 +95,7 @@ struct Time: Equatable, Comparable {
         if other >= self {
             return other - self
         }
-        let timeToMidnight: Int = timeUntil(other: .midnight() - 1).getTotalMins() + 1
+        let timeToMidnight: Int = minInDay - self.getTotalMins()
         return Time(totalMins: timeToMidnight + other.getTotalMins())
     }
     
@@ -104,7 +104,7 @@ struct Time: Equatable, Comparable {
     }
     
     private func minString() -> String {
-        return min == 0 ? "00" : "\(min ?? -1)"
+        return min < 10 ? "0\(min ?? -1)" : "\(min ?? -1)"
     }
     
     func string12hr() -> String {
@@ -118,7 +118,7 @@ struct Time: Equatable, Comparable {
         if hour != 0 {
             return "\(hour ?? -1) hour, \(minString()) minutes"
         } else {
-            return "\(min ?? -1) minutes"
+            return min == 1 ? "\(minString()) minute" : "\(minString()) minutes"
         }
     }
 }

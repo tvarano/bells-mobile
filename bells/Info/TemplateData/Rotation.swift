@@ -25,10 +25,18 @@ struct Rotation {
         }
     }
     
+    func equals(other: Rotation) -> Bool {
+        return other.ordinal == self.ordinal
+    }
+    
     func retrieveSlotRotation() -> [Int] {
         // try reading from internet
         // catch
         return getOfflineRotation();
+    }
+    
+    func day() -> Period {
+        return Period(named: "schoolDay", from: dayType.startTimes[0], to: dayType.endTimes[dayType.endTimes.count - 1])
     }
     
     func getOfflineRotation() -> [Int] {

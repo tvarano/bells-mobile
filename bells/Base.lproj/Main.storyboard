@@ -13,7 +13,7 @@
         <!--Set Rotation-->
         <scene sceneID="4wr-Pq-GWy">
             <objects>
-                <tableViewController title="Set Rotation" id="e5x-oa-3Fr" customClass="BackTableVC" customModule="bells" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="rotationSet" title="Set Rotation" id="e5x-oa-3Fr" customClass="BackTableVC" customModule="bells" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gH6-pm-YxM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,8 @@
                                 </tableViewCellContentView>
                                 <accessibility key="accessibilityConfiguration" identifier="cell"/>
                                 <connections>
-                                    <segue destination="WYl-5Y-EWH" kind="show" id="3OO-iH-CXk"/>
+                                    <segue destination="WYl-5Y-EWH" kind="show" identifier="selectRotation" trigger="accessoryAction" id="4bU-CD-YJJ"/>
+                                    <segue destination="DCZ-Ko-Xue" kind="unwind" unwindAction="unwindToMainWithSender:" id="92Q-GT-z1d"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -37,15 +38,20 @@
                             <outlet property="delegate" destination="e5x-oa-3Fr" id="8TL-sR-EDd"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Set Rotation" id="4oO-vC-j3p">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5sH-eF-CyF">
+                            <connections>
+                                <segue destination="DCZ-Ko-Xue" kind="unwind" unwindAction="cancelWithSender:" id="aJT-v5-DAY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="300" height="812"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <segue destination="WYl-5Y-EWH" kind="show" id="Ex9-7H-N6f"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZf-D1-XYC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DCZ-Ko-Xue" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2252" y="530"/>
+            <point key="canvasLocation" x="2194" y="530"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Qd-PZ-INQ">
@@ -79,38 +85,52 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbK-yU-n5D" userLabel="Content">
                                 <rect key="frame" x="10" y="128" width="355" height="210"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2m-3s-HUd">
-                                        <rect key="frame" x="8" y="8" width="75" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-1g-F5u">
-                                        <rect key="frame" x="8" y="30" width="317" height="54"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LII-G6-APf">
-                                        <rect key="frame" x="8" y="81" width="22" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLR-uh-FSl">
-                                        <rect key="frame" x="8" y="104" width="293" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="A9q-lf-guR">
+                                        <rect key="frame" x="8" y="8" width="339" height="119"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2m-3s-HUd">
+                                                <rect key="frame" x="0.0" y="0.0" width="339" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Class" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-1g-F5u">
+                                                <rect key="frame" x="0.0" y="20.333333333333346" width="339" height="44.333333333333343"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LII-G6-APf">
+                                                <rect key="frame" x="0.0" y="64.666666666666657" width="339" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLR-uh-FSl">
+                                                <rect key="frame" x="0.0" y="85" width="339" height="34"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="LII-G6-APf" firstAttribute="leading" secondItem="A9q-lf-guR" secondAttribute="leading" id="9RM-w5-e1G"/>
+                                            <constraint firstItem="kBb-1g-F5u" firstAttribute="leading" secondItem="A9q-lf-guR" secondAttribute="leading" id="AMT-og-p1a"/>
+                                            <constraint firstAttribute="trailing" secondItem="LII-G6-APf" secondAttribute="trailing" id="M82-bT-jOX"/>
+                                            <constraint firstAttribute="trailing" secondItem="kBb-1g-F5u" secondAttribute="trailing" id="XEN-yi-w1X"/>
+                                            <constraint firstItem="DLR-uh-FSl" firstAttribute="leading" secondItem="A9q-lf-guR" secondAttribute="leading" id="c4y-ye-ayX"/>
+                                            <constraint firstAttribute="trailing" secondItem="DLR-uh-FSl" secondAttribute="trailing" id="dx1-Wj-tcJ"/>
+                                            <constraint firstItem="s2m-3s-HUd" firstAttribute="leading" secondItem="A9q-lf-guR" secondAttribute="leading" id="pWj-Xe-HL7"/>
+                                            <constraint firstAttribute="trailing" secondItem="s2m-3s-HUd" secondAttribute="trailing" id="wFv-ZF-yNZ"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.792156862745098" green="0.92156862745098034" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="210" id="AVu-pF-VHD"/>
+                                    <constraint firstAttribute="trailing" secondItem="A9q-lf-guR" secondAttribute="trailing" constant="8" id="Jao-nI-Ov8"/>
+                                    <constraint firstItem="A9q-lf-guR" firstAttribute="top" secondItem="EbK-yU-n5D" secondAttribute="top" constant="8" id="cER-fg-Rdb"/>
+                                    <constraint firstItem="A9q-lf-guR" firstAttribute="leading" secondItem="EbK-yU-n5D" secondAttribute="leading" constant="8" id="goY-38-y42"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Classes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGJ-3U-dhe">
@@ -123,14 +143,14 @@
                                 <rect key="frame" x="10" y="379" width="355" height="379"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xdu-Xt-7M6">
-                                        <rect key="frame" x="5" y="5" width="345" height="369"/>
+                                        <rect key="frame" x="2" y="2" width="351" height="375"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="E9d-aq-wQI" customClass="ClassTableViewCell" customModule="bells" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="345" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="351" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E9d-aq-wQI" id="g3o-gD-VOX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="43.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                                 <accessibility key="accessibilityConfiguration" identifier="ident"/>
@@ -140,10 +160,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.79215686269999996" green="0.92156862750000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Xdu-Xt-7M6" secondAttribute="trailing" constant="5" id="4Fi-sZ-EWh"/>
-                                    <constraint firstItem="Xdu-Xt-7M6" firstAttribute="top" secondItem="aVS-xZ-Dqe" secondAttribute="top" constant="5" id="P2P-RI-Jxe"/>
-                                    <constraint firstItem="Xdu-Xt-7M6" firstAttribute="leading" secondItem="aVS-xZ-Dqe" secondAttribute="leading" constant="5" id="PTP-uk-u3a"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xdu-Xt-7M6" secondAttribute="bottom" constant="5" id="hK5-uO-vrh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xdu-Xt-7M6" secondAttribute="trailing" constant="2" id="4MC-WK-rfO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xdu-Xt-7M6" secondAttribute="bottom" constant="2" id="SUu-cu-CDz"/>
+                                    <constraint firstItem="Xdu-Xt-7M6" firstAttribute="leading" secondItem="aVS-xZ-Dqe" secondAttribute="leading" constant="2" id="dwD-8s-a8Z"/>
+                                    <constraint firstItem="Xdu-Xt-7M6" firstAttribute="top" secondItem="aVS-xZ-Dqe" secondAttribute="top" constant="2" id="h7L-9J-5SY"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Rotation: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-SA-ERI">
@@ -172,7 +192,7 @@
                     <navigationItem key="navigationItem" title="PH Bells" id="OUS-O0-deG">
                         <barButtonItem key="rightBarButtonItem" title="Set Rotation" id="dBN-d2-z1t">
                             <connections>
-                                <segue destination="e5x-oa-3Fr" kind="show" id="Uff-dc-TZB"/>
+                                <segue destination="e5x-oa-3Fr" kind="show" id="myZ-gL-0J7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -185,7 +205,6 @@
                         <outlet property="statusLabel" destination="s2m-3s-HUd" id="Tl0-E4-Fyh"/>
                         <outlet property="tableBackground" destination="aVS-xZ-Dqe" id="5xT-ZD-Dln"/>
                         <outlet property="timeLeftLabel" destination="DLR-uh-FSl" id="vSP-oi-RpO"/>
-                        <segue destination="e5x-oa-3Fr" kind="show" id="k1E-M9-m2w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToE-eQ-EdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,9 +296,5 @@
     <resources>
         <image name="logo" width="762" height="826"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="3OO-iH-CXk"/>
-        <segue reference="k1E-M9-m2w"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>
